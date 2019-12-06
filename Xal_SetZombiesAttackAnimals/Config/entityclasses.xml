@@ -1,0 +1,83 @@
+<Xaliber>
+
+	<!-- 
+			Zombies attack passive animals too. Better with mods
+			that add more zombies (so you can see them ganging up animals)
+			and  add more animals (so you don't run out of animals)
+	-->
+	
+	
+	<!--	Humanoid zombies
+	  -->
+	  
+	<set xpath="/entity_classes/entity_class[starts-with(@name, 'zombie') and not(contains(@name, 'FatCop') or contains(@name, 'Demolition'))]/property[@value='ApproachAndAttackTarget']/@data">
+		class=EntityNPC,0,EntityEnemyAnimal,0,EntityAnimalStag,0,EntityPlayer,0
+	</set>	<!-- class,maxChaseTime (return home) -->
+			<!-- time to chase before going home -->
+			<!-- original: EntityNPC,0,EntityEnemyAnimal,0,EntityPlayer,0 -->
+	
+	<set xpath="/entity_classes/entity_class[starts-with(@name, 'zombie')]/property[@value='SetNearestEntityAsTarget']/@data">
+		class=EntityPlayer,0,0,EntityNPC,0,0,EntityAnimalStag,0,0
+	</set>	<!-- class, hear distance, see dist (checked left to right, 0 dist uses entity default) -->
+			<!-- original: EntityPlayer,0,0,EntityNPC,0,0 										 -->
+			<!-- disabled: EntityEnemyAnimal,12,6				so they don't attack zombie dogs -->
+			
+			<!-- 
+				 Comparison:
+				 mountainLion		EntityPlayer,14,9
+				 direWolf			EntityPlayer,29,24
+				 animalHostile		EntityPlayer,20,15
+				 animalBear			EntityPlayer,13,8
+				 zombieBear			EntityPlayer,18,13
+			-->
+	
+	
+	
+	<!--	Zombie dogs, they don't fight hostile animals, but fight boars
+	  -->
+	
+	<set xpath="/entity_classes/entity_class[@name='animalZombieDog']/property[@value='ApproachAndAttackTarget']/@data">
+		class=EntityPlayer,20,EntityNPC,20,EntityAnimalStag,10,EntityAnimalRabbit,10
+	</set>	<!-- original: EntityPlayer,20,EntityNPC,20		-->
+	<set xpath="/entity_classes/entity_class[@name='animalZombieDog']/property[@value='SetAsTargetIfHurt']/@data">
+		class=EntityNPC,EntityPlayer,EntityEnemyAnimal
+	</set>	<!-- original: class=EntityNPC,EntityPlayer	-->
+	<set xpath="/entity_classes/entity_class[@name='animalZombieDog']/property[@value='SetNearestEntityAsTarget']/@data">
+		class=EntityPlayer,20,0,EntityNPC,10,0,EntityAnimalStag,10,0,EntityAnimalRabbit,5,0
+	</set>	<!-- original: EntityPlayer,20,0,EntityNPC,0,0	-->
+	
+	
+	<!-- Hostile animals fight zombie dogs
+		 because making zombie dogs attack is too troublesome
+		 and let's assume they sense something hostile in zombie dogs
+		 TODO: do wolves need to fight zombie dogs? or let them hunt with dogs?
+		 -->
+		 
+	<set xpath="/entity_classes/entity_class[@name='animalBear']/property[@value='ApproachAndAttackTarget']/@data">
+		class=EntityAnimalStag,40,EntityPlayer,25,EntityZombie,30,EntityZombieDog,30
+	</set>	<!-- original: EntityAnimalStag,40,EntityPlayer,25,EntityZombie,30		-->
+	<set xpath="/entity_classes/entity_class[@name='animalBear']/property[@value='SetNearestEntityAsTarget']/@data">
+		class=EntityPlayer,13,8,EntityAnimalStag,0,0,EntityZombie,0,0,EntityZombieDog,0,0
+	</set>	<!-- original: EntityPlayer,13,8,EntityAnimalStag,0,0,EntityZombie,0,0	-->
+	
+	<set xpath="/entity_classes/entity_class[@name='animalMountainLion']/property[@value='ApproachAndAttackTarget']/@data">
+		class=EntityAnimalStag,30,EntityPlayer,15,EntityZombie,20,EntityZombieDog,20
+	</set>	<!-- original: EntityAnimalStag,30,EntityPlayer,15,EntityZombie,20		-->
+	<set xpath="/entity_classes/entity_class[@name='animalMountainLion']/property[@value='SetNearestEntityAsTarget']/@data">
+		class=class=EntityPlayer,14,9,EntityAnimalStag,0,0,EntityZombie,0,5,EntityZombieDog,0,5
+	</set>	<!-- original: class=EntityPlayer,14,9,EntityAnimalStag,0,0,EntityZombie,0,5	-->
+	
+	
+	
+	<!--	Todolist: Zombie bears and others hunt for boars
+	  -->
+	
+	<set xpath="/entity_classes/entity_class[@name='animalZombieBear']/property[@value='ApproachAndAttackTarget']/@data">
+		class=EntityAnimalStag,40,EntityPlayer,0,EntityNPC,0						<!--,EntityAnimalBoar,30-->
+	</set>	<!-- original: EntityAnimalStag,40,EntityPlayer,0,EntityNPC,0		-->
+	<set xpath="/entity_classes/entity_class[@name='animalZombieBear']/property[@value='SetNearestEntityAsTarget']/@data">
+		class=EntityPlayer,18,13,EntityAnimalStag,0,0								<!--,EntityAnimalBoar,0,0-->
+	</set>	<!-- original: EntityPlayer,18,13,EntityAnimalStag,0,0	-->
+	
+
+</Xaliber>

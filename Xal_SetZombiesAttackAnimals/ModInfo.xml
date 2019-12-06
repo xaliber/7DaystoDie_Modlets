@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Xal_SetZombiesAttackAnimals" />
+		<Description value="Allow zombies and zombie dogs to attack passive animals." />
+		<Author value="Xaliber13" />
+		<Version value="18.0.1" compat="A18.3"/>
+		<Website value="https://google.com"/>
+	</ModInfo>
+</xml>
