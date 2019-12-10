@@ -7,6 +7,71 @@
 	-->
 	
 	
+	<!--	Customize boars a little bit so they can be attacked
+		Credits to Tin @ 7 Days to Die forums for this trick!
+		Extends boar from passive animals and apply its default properties + hostile AI
+	-->
+	  
+	<set xpath="/entity_classes/entity_class[@name='animalBoar']/@extends">
+		animalTemplateTimid
+	</set>
+	<set xpath="/entity_classes/entity_class[@name='animalBoar']">
+		<property name="Tags" value="entity,animal,hostile,boar,perkAT03,perkAT04,perkAT05"/>
+		<property name="MapIcon" value="ui_game_symbol_tracking_pig"/>
+		<property name="TrackerIcon" value="ui_game_symbol_tracking_pig"/>
+		<property name="IsEnemyEntity" value="false"/><!-- override hostile template setting so he can spawn in safe zones -->
+		<property name="AvatarController" value="AvatarAnimalController"/>
+		<property name="ModelType" value="Standard"/>
+		<property name="HasRagdoll" value="true"/>
+		<property name="PhysicsBody" value="boar"/>
+		<property name="Mass" value="200"/>
+		<property name="Mesh" value="Animals/Boar/AnimalBoarStandardRagdoll"/>
+		<property name="HasDeathAnim" value="true"/>
+		<property name="RootMotion" value="true"/>
+		<property name="RagdollOnDeathChance" value=".5"/>
+
+		<property name="AIPathCostScale" value=".4, .6"/>
+		<property name="AITask-1" value="Swim"/>
+		<property name="AITask-2" value="BreakBlock"/>
+		<property name="AITask-3" value="ApproachAndAttackTarget" data="class=EntityNPC,20,EntityPlayer,20,EntityZombie,20,EntityEnemyAnimal,20"/>
+		<property name="AITask-4" value="ApproachSpot"/>
+		<property name="AITask-5" value="Look"/>
+		<property name="AITask-6" value="Wander"/>
+		<property name="AITarget-1" value="SetAsTargetIfHurt" data="class=EntityNPC,EntityPlayer,EntityZombie,EntityEnemyAnimal"/>
+		<property name="AITarget-2" value="BlockingTargetTask"/>
+		<property name="AITarget-3" value=""/>
+	
+		<property name="SoundRandom" value="Animals/Boar/boarroam"/>
+		<property name="SoundAlert" value="Animals/Boar/boaralert"/>
+		<property name="SoundHurt" value="Animals/Boar/boarpain"/>
+		<property name="SoundDeath" value="Animals/Boar/boardeath"/>
+		<property name="SoundAttack" value="Animals/Boar/boarattack"/>
+		<property name="SoundSense" value="Animals/Boar/boarsense"/>
+		<property name="SoundGiveUp" value="Animals/Boar/boargiveup"/>
+
+		<!-- Gameplay -->
+		<property name="MoveSpeed" value="0.2"/>
+		<property name="MoveSpeedAggro" value="1.3, 1.3"/>
+		<property name="MoveSpeedPanic" value="1.6"/>
+
+		<property name="HandItem" value="meleeHandAnimalWolf"/>
+
+		<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+		<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="30"/> <!-- animalBoar -->
+		<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="7"/>
+		<drop event="Harvest" name="resourceAnimalFat" count="4" tag="butcherHarvest"/>
+		<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="15"/>
+		<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="5"/>
+		<drop event="Harvest" name="foodRawMeat" count="1" tag="WasteTreasuresCompleteHarvest"/>
+		<drop event="Harvest" name="resourceLeather" count="1" tag="WasteTreasuresCompleteHarvest"/>
+		<drop event="Harvest" name="resourceBone" count="1" tag="WasteTreasuresCompleteHarvest"/>
+
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="250"/>
+			<passive_effect name="HealthMax" operation="perc_add" value="0"/> <!-- Animal HP scale -->
+		</effect_group>
+	</set>
+	
 	<!--	Humanoid zombies
 	  -->
 	  
@@ -66,18 +131,6 @@
 	<set xpath="/entity_classes/entity_class[@name='animalMountainLion']/property[@value='SetNearestEntityAsTarget']/@data">
 		class=class=EntityPlayer,14,9,EntityAnimalStag,0,0,EntityZombie,0,5,EntityZombieDog,0,5
 	</set>	<!-- original: class=EntityPlayer,14,9,EntityAnimalStag,0,0,EntityZombie,0,5	-->
-	
-	
-	
-	<!--	Todolist: Zombie bears and others hunt for boars
-	  -->
-	
-	<set xpath="/entity_classes/entity_class[@name='animalZombieBear']/property[@value='ApproachAndAttackTarget']/@data">
-		class=EntityAnimalStag,40,EntityPlayer,0,EntityNPC,0						<!--,EntityAnimalBoar,30-->
-	</set>	<!-- original: EntityAnimalStag,40,EntityPlayer,0,EntityNPC,0		-->
-	<set xpath="/entity_classes/entity_class[@name='animalZombieBear']/property[@value='SetNearestEntityAsTarget']/@data">
-		class=EntityPlayer,18,13,EntityAnimalStag,0,0								<!--,EntityAnimalBoar,0,0-->
-	</set>	<!-- original: EntityPlayer,18,13,EntityAnimalStag,0,0	-->
 	
 
 </Xaliber>
