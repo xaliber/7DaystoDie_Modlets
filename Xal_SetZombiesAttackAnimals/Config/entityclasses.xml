@@ -116,21 +116,24 @@
 		 because making zombie dogs attack is too troublesome
 		 and let's assume they sense something hostile in zombie dogs
 		 TODO: do wolves need to fight zombie dogs? or let them hunt with dogs?
+
+		 According to report this makes the mod generates error. Let's just disable it for the moment
 		 -->
-		 
+	<!--	 
 	<set xpath="/entity_classes/entity_class[@name='animalBear']/property[@value='ApproachAndAttackTarget']/@data">
 		class=EntityAnimalStag,40,EntityPlayer,25,EntityZombie,30,EntityZombieDog,30
-	</set>	<!-- original: EntityAnimalStag,40,EntityPlayer,25,EntityZombie,30		-->
+	</set>	!-- original: EntityAnimalStag,40,EntityPlayer,25,EntityZombie,30		--
 	<set xpath="/entity_classes/entity_class[@name='animalBear']/property[@value='SetNearestEntityAsTarget']/@data">
 		class=EntityPlayer,13,8,EntityAnimalStag,0,0,EntityZombie,0,0,EntityZombieDog,0,0
-	</set>	<!-- original: EntityPlayer,13,8,EntityAnimalStag,0,0,EntityZombie,0,0	-->
+	</set>	!-- original: EntityPlayer,13,8,EntityAnimalStag,0,0,EntityZombie,0,0	--
 	
 	<set xpath="/entity_classes/entity_class[@name='animalMountainLion']/property[@value='ApproachAndAttackTarget']/@data">
 		class=EntityAnimalStag,30,EntityPlayer,15,EntityZombie,20,EntityZombieDog,20
-	</set>	<!-- original: EntityAnimalStag,30,EntityPlayer,15,EntityZombie,20		-->
+	</set>	!-- original: EntityAnimalStag,30,EntityPlayer,15,EntityZombie,20		--
 	<set xpath="/entity_classes/entity_class[@name='animalMountainLion']/property[@value='SetNearestEntityAsTarget']/@data">
 		class=class=EntityPlayer,14,9,EntityAnimalStag,0,0,EntityZombie,0,5,EntityZombieDog,0,5
-	</set>	<!-- original: class=EntityPlayer,14,9,EntityAnimalStag,0,0,EntityZombie,0,5	-->
+	</set>	!-- original: class=EntityPlayer,14,9,EntityAnimalStag,0,0,EntityZombie,0,5	--
+	-->
 	
 
 </Xaliber>
